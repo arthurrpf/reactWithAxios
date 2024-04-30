@@ -10,13 +10,13 @@ interface Advice{
 function App() {
 
   const [nome, setNome] = useState<String>();
-  const [advice, setAdvice] = useState<String>();
+  const [Personagem, setPersonagem] = useState();
 
   const getData = useCallback( async()=> {
-    await axios.get('https://api.adviceslip.com/advice')
+    await axios.get('https://swapi.py4e.com/api/people/4/')
     .then(function (response) {
      console.log(response.data);
-     setAdvice(response.data.slip.advice);
+     setPersonagem(response.data);
     })
     .catch(function (error) {
       console.error(error);
@@ -35,7 +35,7 @@ function App() {
     <div>
       <strong>Ola {nome}</strong>
 
-      <strong>{advice}</strong>
+      <strong>{Personagem && Personagem.name}</strong>
       <button onClick={() => defName('Tomate')}>Tomate</button>
       <button onClick={() => defName('Batata')}>Batata</button>
       <button onClick={() => defName('Beterraba')}>Beterraba</button>
